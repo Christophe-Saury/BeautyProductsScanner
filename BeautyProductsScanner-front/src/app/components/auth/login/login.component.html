@@ -1,0 +1,27 @@
+<div class="flex items-center justify-center h-full">
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body">
+            <form>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Adresse email :</span>
+                    </label>
+                    <input name="email" type="email" placeholder="Adresse email..." class="input input-bordered w-full max-w-xs" [(ngModel)]="form.email" />
+                </div>
+            
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Mot de passe :</span>
+                    </label>
+                    <input name="password" type="password" placeholder="Mot de passe..." class="input input-bordered w-full max-w-xs" [(ngModel)]="form.password" />
+                </div>
+            
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm">Pas encore de compte ? <a class="link link-primary" href="/auth/signup">M'inscrire</a>.</span>
+                    <button type="submit" class="btn btn-primary" (click)="submit()" [ngClass]="{'loading': isLoading}">Connexion</button>
+                </div>
+            </form>
+           
+        </div>
+    </div>
+</div>

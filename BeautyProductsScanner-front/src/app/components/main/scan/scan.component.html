@@ -1,0 +1,50 @@
+<div class="h-full p-4 sm:p-8 overflow-auto custom-scrollbar">
+    <h1 class="text-4xl font-extrabold">Scanner un produit</h1>
+
+    <div>
+        <div class="mt-8 w-full lg:w-1/2 mx-auto">
+            <webcam
+                [trigger]="invokeObservable"
+                (imageCapture)="captureImg($event)"
+                [imageQuality]="1"
+                [mirrorImage]="'never'"
+            ></webcam>
+        </div>
+    </div>
+
+    <div>
+
+        <div class="col-12" *ngIf="imageUrl">
+            <div class="hidden">
+                <ngx-scanner-qrcode #action="scanner" (event)="codeOutput($event)" [src]="imageUrl" class="hidden"></ngx-scanner-qrcode>
+            </div>
+        </div>
+
+    </div>
+   
+</div>
+
+<input type="checkbox" id="modal-item-find" class="modal-toggle" [checked]="showModalFindArticle" />
+<div class="modal" id="modal-item-find">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Article trouvé !</h3>
+        <p class="py-4 capitalize">{{ scannedProduct?.name }}</p>
+        <div class="modal-action justify-between items-center">
+            <label for="modal-item-find" class="link" (click)="imageUrl=undefined">Annuler</label>
+            <a *ngIf="scannedProduct" [routerLink]="['/', 'products', scannedProduct.id]" for="modal-item-find" class="btn">Naviguer vers la page de cet article</a>
+        </div>
+    </div>
+</div>
+
+<input type="checkbox" id="modal-item-not-find" class="modal-toggle" [checked]="showModalUnableFindArticle" />
+<div class="modal" id="modal-item-not-find">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Article non référencé :(</h3>
+        <p class="py-4">Aucune donnée n'est disponible pour cet article pour le moment. Que voulez-vous faire ?</p>
+        <div class="flex justify-center flex-col space-y-4 mt-8">
+            <button (click)="showModalUnableFindArticle=false" class="btn">Scanner un autre produit</button>
+            <a [routerLink]="['/', 'products', 'create']" [queryParams]="{code:codeData}" for="modal-item-not-find" class="btn">Enregistrer ce produit</a>
+        </div>
+    </div>
+</div>
+
