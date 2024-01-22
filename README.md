@@ -30,3 +30,7 @@ J'ai participé à la réalisation de :
 - la story map
 - le release plan
 - le prototypage sur figma
+
+Lien du prototype Figma :
+https://www.figma.com/file/2uDklUYm1byFs6ax2ilBI2/Untitled?type=design&mode=design&t=r7oshGc4aOM5VLqo-1
+
