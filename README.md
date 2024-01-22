@@ -1,36 +1,33 @@
 # BeautyProductsScanner
 
-Projet scolaire de gestion de projet à l'ISEP. Nous devions monter un projet de la phase de détermination du sujet, jusqu'à la conception du première version de l'application servant de proof of concept.
-La partie la plus importante du projet au yeux de nos professeurs était la réalisation d'un rapport comprenant le travail effectué le long du projet à travers :
-- un elevator pitch
-- un questionnaire utilisateur
-- un impact mapping
-- des personas
-- des user stories
-- une story map
-- un release plan
-  
-Nous avons également ajouté à ce rapport des mockups provenant de notre prototype de l'application sur Figma.
+This is a school project in project management at ISEP. We had to develop a project from the determination phase of the subject to the design of the first version of the application serving as a proof of concept. The most crucial part of the project in the eyes of our professors was the creation of a report that includes the work done throughout the project, covering:
+- an elevator pitch
+- a user questionnaire
+- an impact mapping
+- personas
+- user stories
+- a story map
+- a release plan
+We also added to this report mockups from our application prototype on Figma.
 
-Problème identifié :
-Le problème identifié est la complexité et la difficulté pour les utilisateurs de trouver des produits de soins personnels adaptés à leurs besoins spécifiques en matière de beauté, de soins de la peau, des cheveux et de la barbe. La diversité des besoins des utilisateurs et des produits sur le marché rend souvent cette recherche fastidieuse.
+Identified Problem :
+The identified problem is the complexity and difficulty for users to find personal care products tailored to their specific needs in terms of beauty, skincare, hair, and beard care. The diversity of user needs and products on the market often makes this search tedious.
 
 Solution :
-Notre projet vise à simplifier la routine de beauté des utilisateurs en utilisant un scanner intelligent pour identifier leurs produits actuels et leur recommander des soins personnalisés adaptés à leur type de peau, cheveux et barbe. Avec des fonctionnalités de recherche avancée, évaluation des produits, conseils personnalisés, un blog intégré, et bientôt des consultations avec des experts. 
-Nous souhaitons offrir une expérience holistique pour aider les utilisateurs à se sentir plus confiants et en contrôle de leur apparence et de leur bien-être.
+Our project aims to simplify users' beauty routines by using an intelligent scanner to identify their current products and recommend personalized care tailored to their skin type, hair, and beard. With advanced search features, product evaluations, personalized advice, an integrated blog, and soon consultations with experts, we aim to provide a holistic experience to help users feel more confident and in control of their appearance and well-being.
 
-Mon rôle :
-J'ai participé à la réalisation de :
-- la définition du problème
-- la définition d'une solution
-- l'elevator pitch
-- le questionnaire utilisateur et les interviews auprès de potentiels utilisateurs
-- l'impact mapping
-- les personas
-- la story map
-- le release plan
-- le prototypage sur figma
+My Role :
+I contributed to :
+- defining the problem
+- defining a solution
+- the elevator pitch
+- the user questionnaire and interviews with potential users
+- impact mapping
+- personas
+- the story map
+- the release plan
+- prototyping on Figma
 
-Lien du prototype Figma :
+Figma Prototype Link:
 https://www.figma.com/file/2uDklUYm1byFs6ax2ilBI2/Untitled?type=design&mode=design&t=r7oshGc4aOM5VLqo-1
 
