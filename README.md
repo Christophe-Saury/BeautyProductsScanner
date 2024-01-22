@@ -19,7 +19,7 @@ The identified problem is the complexity and difficulty for users to find person
 
 **Solution :**
 
-Our project aims to simplify users' beauty routines by using an intelligent scanner to identify their current products and recommend personalized care tailored to their skin type, hair, and beard. With advanced search features, product evaluations, personalized advice, an integrated blog, and soon consultations with experts, we aim to provide a holistic experience to help users feel more confident and in control of their appearance and well-being.
+Our solution is a web app that aims to simplify users' beauty routines by using an intelligent scanner to identify their current products and recommend personalized care tailored to their skin type, hair, and beard. With advanced search features, product evaluations, personalized advice, an integrated blog, and soon consultations with experts, we aim to provide a holistic experience to help users feel more confident and in control of their appearance and well-being.
 
 
 **My Role :**
