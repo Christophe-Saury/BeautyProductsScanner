@@ -1,0 +1,15 @@
+<div class="btn-group">
+    <button [disabled]="currentPage===1" class="btn" (click)="goToPage(currentPage-1)">&laquo;</button>
+    <button class="btn" *ngIf="currentPage > 2" (click)="goToPage(1)">1</button>
+
+    <div class="pagination-ellipsis" *ngIf="currentPage > 3">&hellip;</div>
+
+    <button class="btn" *ngIf="currentPage > 1" (click)="goToPage(currentPage - 1)">{{ currentPage - 1 }}</button>
+    <button class="btn btn-active">{{ currentPage }}</button>
+    <button class="btn" *ngIf="currentPage < totalPages" (click)="goToPage(currentPage + 1)">{{ currentPage + 1 }}</button>
+
+    <div class="pagination-ellipsis" *ngIf="totalPages-currentPage>2">&hellip;</div>
+
+    <button class="btn" *ngIf="currentPage < totalPages-1" (click)="goToPage(totalPages)">{{ totalPages }}</button>
+    <button [disabled]="currentPage===totalPages" class="btn" (click)="goToPage(currentPage + 1)">&raquo;</button>
+  </div>

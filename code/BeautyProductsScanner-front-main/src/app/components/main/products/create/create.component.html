@@ -1,0 +1,40 @@
+<div class="h-full p-4 sm:p-8 overflow-auto custom-scrollbar">
+    <h1 class="text-4xl font-extrabold">Enregistrer un produit</h1>
+
+    <div class="form-control w-full max-w-xs mt-2">
+        <label class="label">
+          <span class="label-text">Nom du produit</span>
+        </label>
+        <input type="text" placeholder="Nom du produit..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productCreateEntity.name" />
+    </div>
+
+    <div class="form-control w-full max-w-xs mt-2">
+        <label class="label">
+          <span class="label-text">Marque</span>
+        </label>
+        <input type="text" placeholder="Marque du produit..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productCreateEntity.brand" />
+    </div>
+
+    <div class="form-control w-full max-w-xs mt-2">
+        <label class="label">
+          <span class="label-text">Code barre</span>
+        </label>
+        <input type="text" placeholder="Code barre..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productCreateEntity.code" />
+    </div>
+
+    <div class="form-control w-full max-w-xs mt-2">
+        <label class="label">
+          <span class="label-text">Catégories</span>
+        </label>
+        <input type="text" placeholder="Catégories..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productCreateEntity.categories" />
+        <label class="label">
+            <span class="label-text-alt">Au format <i>CATEGORIE>SOUS-CATEGORIE;</i></span>
+          </label>
+    </div>
+
+    <p *ngIf="isSuccess" class="font-semibold text-green-600 mt-4">L'article a bien été soumis pour examen.</p>
+
+    <div class="flex justify-end" *ngIf="!isSuccess">
+        <button class="btn" [ngClass]="{'loading': isLoading}" (click)="submitRequest()">Soumettre</button>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="h-full p-4 sm:p-8 overflow-auto custom-scrollbar">
+    <h1 class="text-4xl font-extrabold">Produits</h1>
+
+    <div class="flex justify-end mt-12">
+      <p class="font-bold">{{ totalCount }} résultats | {{ products.length }} affichés</p>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="table table-compact w-full">
+          <thead>
+            <tr>
+              <th></th> 
+              <th>Nom</th> 
+              <th>Type</th>
+              <th>Date</th>
+              <th>Utilisateur</th> 
+              <th>Etat</th> 
+            </tr>
+          </thead> 
+          <tbody>
+            <tr *ngFor="let product of products; let $i = index" class="hover cursor-pointer" [routerLink]="product.id.toString()">
+              <th>{{ $i+1 }}</th> 
+              <td>{{ product.product ? product.product.name : product.name }}</td> 
+              <td>
+                <span *ngIf="product.product" class="badge badge-primary">Edition</span>
+                <span *ngIf="!product.product" class="badge badge-secondary">Création</span>
+              </td>
+              <td>{{ dayjs(product.date).format('DD/MM/YYYY') }}</td>
+              <td>{{ product.user.name }} {{ product.user.lastname.toUpperCase() }}</td>
+              <td>
+                <span *ngIf="product.state==0" class="badge badge-error">Non traité</span>
+                <span *ngIf="product.state==1" class="badge badge-ghost">Refusé</span>
+                <span *ngIf="product.state==2" class="badge badge-success">Accepté</span>
+              </td> 
+            </tr>
+          </tbody> 
+        </table>
+    </div>
+    <div *ngIf="isLoading" class="flex items-center justify-center w-full mt-8">
+      <i class="las la-spinner la-spin text-5xl"></i>
+    </div>
+    <div class="flex justify-end mt-8">
+      <app-table-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-table-pagination> 
+  </div>
+</div>

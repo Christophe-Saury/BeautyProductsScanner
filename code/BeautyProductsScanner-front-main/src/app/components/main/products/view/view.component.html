@@ -1,0 +1,147 @@
+
+<div class="h-full p-4 sm:p-8 overflow-auto custom-scrollbar">
+
+    <div *ngIf="productEntity">
+
+        <div class="flex flex-col lg:flex-row lg:space-x-8">
+            <div class="bg-gray-300 w-52 h-80 rounded-xl shrink-0 mx-auto lg:m-0">
+
+            </div>
+
+            <div class="mt-8 lg:mt-0">
+                <h1 class="text-3xl lg:text-5xl font-bold capitalize">{{ productEntity.name }}</h1>
+                <p class="text-xl mt-4">{{ productEntity.brand }}</p>
+
+                <div class="mt-4 text-xl font-bold flex items-center">
+                    <ng-container *ngIf="productEntity.countGrade"><i class="las la-star text-yellow-500"></i><span class="text-lg ml-2 mr-8">{{ productEntity.grade }}</span></ng-container>
+                    <label for="modal-grade" class="link text-sm">
+                        Noter ce produit
+                    </label>
+                </div>
+                {{ productEntity.countGrade ?? 'Aucun' }} avis
+            </div>
+        </div>
+
+        <h3 class="font-bold mt-8 text-lg">Catégories</h3>
+        <div class="flex flex-wrap">
+            
+            <div *ngFor="let c of getCategories()" class="badge m-1">
+                {{ c }}
+            </div>
+        </div>
+
+        <h3 class="font-bold mt-8 text-lg">Commentaires ({{ comments.length }})</h3>
+
+        <form>
+            <div class="bg-accent bg-opacity-80 p-2 rounded-full mt-4 flex">
+                <input name="comment" type="text" placeholder="Ce produit est super !" class="input rounded-full placeholder-neutral placeholder-opacity-90 bg-opacity-20 w-full mr-2" [(ngModel)]="newCommentText" />
+                <button type="submit" class="btn btn-circle" [ngClass]="{'loading' : commentLoading}" (click)="submitNewComment()"><i *ngIf="!commentLoading" class="las la-paper-plane text-lg"></i></button>
+            </div>
+        </form>
+        
+        <div *ngFor="let c of comments">
+            <div class="chat chat-start mt-4">
+                <div class="chat-bubble chat-bubble-accent w-full text-accent-content">
+                    <div class="font-semibold flex justify-between">
+                        <span>{{ c.user.name }} {{ c.user.lastname.toUpperCase() }}</span>
+                        <span>
+                            <div *ngIf="c.user.id==userService.user()?.id || userService.user()?.role == 'admin'" class="tooltip" data-tip="Supprimer">
+                                <button (click)="deleteComment(c.id)"><i class="las la-trash"></i></button>
+                              </div>
+                        </span>
+                    </div>
+                    <p>{{ c.comment }}</p>
+                    <p class="text-xs text-right">{{ dayjs(c.date).format('Le D MMMM YYYY à HH:mm') }}</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <p *ngIf="comments.length== 0" class="text-center mt-8 text-neutral w-full">
+            <i class="las la-comment-slash mr-2"></i>Personne n'a posté de commentaire pour le moment. Soyez le premier !
+        </p>
+
+        <div>
+            <label class="btn text-sm mt-12" (click)="requestSuccess=false;showModalEditProduct=true;">
+                Corriger ce produit
+            </label>
+        </div>
+    </div>
+
+    <div *ngIf="isLoading" class="flex items-center justify-center w-full h-full">
+        <i class="las la-spinner la-spin text-5xl"></i>
+   </div>
+
+   <div *ngIf="!isLoading && !productEntity" class="flex items-center justify-center w-full h-full">
+        <div class="flex flex-col items-center justify-center">
+            <i class="las la-frown text-9xl"></i>
+            <span class="mt-4 text-xl font-semibold">Cet article n'existe pas !</span>
+            <a class="link no-underline hover:text-primary duration-200" routerLink="/"><i class="las la-arrow-left mr-2 mt-4"></i>Retour</a>
+        </div>
+    </div>
+</div>
+
+
+<input type="checkbox" id="modal-grade" class="modal-toggle" [checked]="showModalGrade" (change)="showModalGrade=true" />
+<label for="modal-grade" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+        <h3 class="font-bold text-lg">Noter cet article</h3>
+
+        <div class="flex justify-center mt-4">
+            <ng-container *ngFor="let _ of [].constructor(10); let i=index">
+                <button (click)="setGrade(i+1)"><i class="lar la-star text-yellow-500 text-3xl mx-2"></i></button>
+            </ng-container>
+        </div>
+    </label>
+</label>
+
+<input type="checkbox" id="modal-edit-product" class="modal-toggle" [checked]="showModalEditProduct" (change)="showModalEditProduct=true" />
+<label for="modal-product" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+        <h3 class="font-bold text-lg">Modifier cet article</h3>
+        <p>Vous pouvez suggérer des modifications sur la fiche de ce produit. Vos modifications seront vérifiées avant d'être publiées.</p>
+        
+        <div class="form-control w-full max-w-xs mt-2">
+            <label class="label">
+              <span class="label-text">Nom du produit</span>
+            </label>
+            <input type="text" placeholder="Nom du produit..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productRequestEntity.name" />
+        </div>
+
+        <div class="form-control w-full max-w-xs mt-2">
+            <label class="label">
+              <span class="label-text">Marque</span>
+            </label>
+            <input type="text" placeholder="Marque du produit..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productRequestEntity.brand" />
+        </div>
+
+        <div class="form-control w-full max-w-xs mt-2">
+            <label class="label">
+              <span class="label-text">Code barre</span>
+            </label>
+            <input type="text" placeholder="Code barre..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productRequestEntity.code" />
+        </div>
+
+        <div class="form-control w-full max-w-xs mt-2">
+            <label class="label">
+              <span class="label-text">Catégories</span>
+            </label>
+            <input type="text" placeholder="Catégories..." class="input input-bordered w-full max-w-xs" [(ngModel)]="productRequestEntity.categories" />
+            <label class="label">
+                <span class="label-text-alt">Au format <i>CATEGORIE>SOUS-CATEGORIE;</i></span>
+              </label>
+        </div>
+
+        <div class="flex justify-between items-center mt-8" *ngIf="!requestSuccess">
+            <button (click)="showModalEditProduct=false" class="link">Annuler</button>
+            <button class="btn" [ngClass]="{'loading': requestLoading}" (click)="submitProductRequest()">Soumettre</button>
+        </div>
+        <div *ngIf="requestSuccess" class="mt-8">
+            <p class="text-green-600 font-bold w-full">La demande a bien été envoyée !</p>
+            <button (click)="showModalEditProduct=false" class="link mt-4">Fermer</button>
+        </div>
+        
+    </label>
+</label>
+
+
